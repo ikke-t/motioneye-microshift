@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: motion
+  name: motion-eye
+  labels:
+    app: motion-eye
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: motion-eye
+  template:
+    metadata:
+      labels:
+        app: motion-eye
+    spec:
+      serviceAccount: motion
+      serviceAccountName: motion
+      securityContext:
+        allowPrivilegeEscalation: true
+        hostaccess: true
+        RunAsAny: true
+      privileged: true
+      containers:
+        - name: motioneye
+          env:
+            - name: HOSTNAME
+              value: motioneye
+          volumeMounts:
+            - name: motion-conf
+              mountPath: /etc/motioneye
+            - name: motion-media
+              mountPath: /lib/motion
+          image: docker.io/ccrisan/motioneye:master-armhf
+          ports:
+            - containerPort: 8080
+            - containerPort: 8081
+            - containerPort: 8765
+          securityContext:
+            privileged: true
+          hostname: motioneye
+      volumes:
+        - name: motion-media
+          persistentVolumeClaim:
+            claimName: motion-media
+        - name: motion-conf
+          persistentVolumeClaim:
+            claimName: motion-conf

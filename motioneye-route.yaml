@@ -1,0 +1,53 @@
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: motion-eye
+  name: motion-config
+  namespace: motion
+spec:
+  host: motion-config.apps.raspishift.cool.lab
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: motion-conf
+    weight: 100
+  wildcardPolicy: None
+
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: motion-eye
+  name: motion-stream
+  namespace: motion
+spec:
+  host: motion.apps.raspishift.cool.lab
+  port:
+    targetPort: 8081
+  to:
+    kind: Service
+    name: motion-stream
+    weight: 100
+  wildcardPolicy: None
+
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: motion-eye
+  name: motioneye-front
+  namespace: motion
+spec:
+  host: motioneye.apps.raspishift.cool.lab
+  port:
+    targetPort: 8765
+  to:
+    kind: Service
+    name: motioneye-front
+    weight: 100
+  wildcardPolicy: None

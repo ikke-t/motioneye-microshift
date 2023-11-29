@@ -1,0 +1,18 @@
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: motion
+# allowHostDirVolumePlugin: false   # allow mounting host directories
+# allowHostNetwork: true
+# allowHostPID: true
+# allowHostPorts: true             # allow using host network ports
+allowPrivilegedContainer: true
+# allowPrivilegeEscalation: true
+# readOnlyRootFilesystem: false
+runAsUser:
+  type: RunAsAny                 # allow running as any user
+# supplementalGroups:
+#   type: RunAsAny
+seLinuxContext:
+  type: RunAsAny
+users: []

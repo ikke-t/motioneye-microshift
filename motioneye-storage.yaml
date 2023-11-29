@@ -1,0 +1,34 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: motion-conf
+  namespace: motion
+  labels:
+    app: motion-eye
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Mi
+  volumeMode: Filesystem
+  storageClassName: topolvm-provisioner
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: motion-media
+  namespace: motion
+  labels:
+    app: motion-eye
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  volumeMode: Filesystem
+  storageClassName: topolvm-provisioner
+
