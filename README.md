@@ -154,5 +154,28 @@ following command:
 oc create -f <yaml file>
 ```
 
+# Running MotionEye with podman
+
+You need to verify your user is part of video group, or you manually give
+permissions to video device for your user by ```chmod o+rw /dev/video0```
+or by udev rule.
+
+Starting this as podman non-root container would be super easy, one command:
+
+```
+mkdir motioneye-conf motioneye-video
+podman run --name="motioneye" \
+  -p 8765:8765  -p 8080:8080 -p 8081:8081 \
+  --hostname="motioneye" \
+  --device /dev/video0 \
+  -v /var/home/core/motioneye-conf:/etc/motioneye:z \
+  -v /var/home/core/motioneye-video:/var/lib/motioneye:z \
+  -v /etc/localtime:/etc/localtime:ro \
+  --rm --detach=true --privileged \
+  ccrisan/motioneye:master-armhf
+```
+
+Wrap around the systemd files to make it start at boot.
+
 Author: Ilkka Tengvall
 License: GPLv3
