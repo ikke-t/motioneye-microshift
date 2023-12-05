@@ -24,15 +24,15 @@ stream and motion configuration separately.
 
 Configuration is split into different files, and applied in this order:
 
-1. **[motioneye-namespace.yaml](./motioneye-namespace.yaml)** - creates namespace, loosening the permissions
-2. **[motioneye-scc.yaml](./motioneye-scc.yaml)** - Security Context Constraint for HW access
-3. **[motioneye-clusterrole.yaml](./motioneye-clusterrole.yaml)** - create role to allow access to video HW.  XXX
-4. **[motioneye-sa.yaml](./motioneye-sa.yaml)** - Service Account with access to HW
-5. **[motioneye-clusterrolebinding.yaml](./motioneye-clusterrolebinding.yaml)** - binds the SA to correct SCC
-6. **[motioneye-storage.yaml](./motioneye-storage.yaml)** - Persistent storages for media and conf
-7. **[motioneye-deployment.yaml](./motioneye-deployment.yaml)** - creates the container
-8. **[motioneye-service.yaml](./motioneye-service.yaml)** - Services to different TCP ports
-9. **[motioneye-route.yaml](./motioneye-route.yaml)** - Expose the routes to application
+1. **[motioneye-namespace.yaml](./base/motioneye-namespace.yaml)** - creates namespace, loosening the permissions
+2. **[motioneye-scc.yaml](./base/motioneye-scc.yaml)** - Security Context Constraint for HW access
+3. **[motioneye-clusterrole.yaml](./base/motioneye-clusterrole.yaml)** - create role to allow access to video HW.  XXX
+4. **[motioneye-sa.yaml](./base/motioneye-sa.yaml)** - Service Account with access to HW
+5. **[motioneye-clusterrolebinding.yaml](./base/motioneye-clusterrolebinding.yaml)** - binds the SA to correct SCC
+6. **[motioneye-storage.yaml](./base/motioneye-storage.yaml)** - Persistent storages for media and conf
+7. **[motioneye-deployment.yaml](./base/motioneye-deployment.yaml)** - creates the container
+8. **[motioneye-service.yaml](./base/motioneye-service.yaml)** - Services to different TCP ports
+9. **[motioneye-route.yaml](./base/motioneye-route.yaml)** - Expose the routes to application
 
 # Demo setup
 
@@ -155,8 +155,15 @@ The config files are listed above, run them in in the given order using the
 following command:
 
 ```
-oc create -f <yaml file>
+oc create -f base/<yaml file>
 ```
+
+## Kustomize
+
+I added [kustomize](https://github.com/kubernetes-sigs/kustomize)
+to be able to apply the configuration to differrent microshifts. The resource
+files are in [base](./base) directory and the cluster specific changes are in
+[overlays](./overlays) directory.
 
 # Running MotionEye with podman
 

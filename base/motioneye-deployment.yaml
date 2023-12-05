@@ -33,7 +33,9 @@ spec:
               mountPath: /etc/motioneye
             - name: motion-media
               mountPath: /lib/motion
-          image: docker.io/ccrisan/motioneye:master-armhf
+          # image: docker.io/ccrisan/motioneye:master-armhf
+          # image: docker.io/ccrisan/motioneye:master-amd64
+          image: motioneye-image
           ports:
             - containerPort: 8080
             - containerPort: 8081
