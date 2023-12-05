@@ -51,6 +51,10 @@ podman run --name fed39 -ti --hostname fed39 -v $PWD/src:/src:z fedora:39
 
 ## Build microshift rpms for arm Fedora
 
+(FYI, if you don't want to build this, check
+[Wolframs FrankenShift guide](https://github.com/wrichter/frankenshift)
+for just using rhel rpms.)
+
 Microshift dependencies need to patched to satisfy Fedora dependencies:
 
 ```
