@@ -18,11 +18,8 @@ spec:
     spec:
       serviceAccount: motion
       serviceAccountName: motion
-      securityContext:
-        allowPrivilegeEscalation: true
-        hostaccess: true
-        RunAsAny: true
-      privileged: true
+      securityContext: {}
+      hostname: motioneye
       containers:
         - name: motioneye
           env:
@@ -42,7 +39,6 @@ spec:
             - containerPort: 8765
           securityContext:
             privileged: true
-          hostname: motioneye
       volumes:
         - name: motion-media
           persistentVolumeClaim:
