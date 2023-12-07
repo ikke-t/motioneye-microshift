@@ -173,6 +173,8 @@ We want ArgoCD to make sure the given edge box runs MotionEye, so we use
 OpenShift GitOps from the nearby edge Single Node OpenShift (SNO) gitops
 to push all the configs to given cluster.
 
+![ArgoCD view of app](./pics/argocd.png)
+
 Apply [motioneye-argocd-app](./argocd/motioneye-argocd-app.yaml)
 ```
 oc apply -f argocd/motioneye-argocd-app.yaml
@@ -183,6 +185,8 @@ oc apply -f argocd/motioneye-argocd-app.yaml
 To add the application to ACM, there is config file
 [motioneye-acm](./acm/motioneye-acm.yaml) which configures ACM to
 push the app to ArgoCD of any cluster that has label motion-eye-argocd.
+
+![ACM view of app](./pics/acm.png)
 
 To apply this do:
 ```
