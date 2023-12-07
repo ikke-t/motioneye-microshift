@@ -1,0 +1,16 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: motion-eye-raspishift
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: motion
+    server: https://raspishift.cool.lab:6443
+  project: default
+  source:
+    path: overlays/raspishift
+    repoURL: https://github.com/ikke-t/motioneye-microshift.git
+    targetRevision: HEAD
+  syncPolicy: {}

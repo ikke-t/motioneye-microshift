@@ -33,6 +33,7 @@ Configuration is split into different files, and applied in this order:
 7. **[motioneye-deployment.yaml](./base/motioneye-deployment.yaml)** - creates the container
 8. **[motioneye-service.yaml](./base/motioneye-service.yaml)** - Services to different TCP ports
 9. **[motioneye-route.yaml](./base/motioneye-route.yaml)** - Expose the routes to application
+10. **[motioneye-argocd-app](./motioneye-argocd-app.yaml)** - ArgoCD automation to use this repo
 
 # Demo setup
 
@@ -164,6 +165,16 @@ I added [kustomize](https://github.com/kubernetes-sigs/kustomize)
 to be able to apply the configuration to differrent microshifts. The resource
 files are in [base](./base) directory and the cluster specific changes are in
 [overlays](./overlays) directory.
+
+## ArgoCD automation
+
+We want ArgoCD to make sure the given edge box runs MotionEye, so we use
+OpenShift GitOps from the nearby edge Single Node OpenShift (SNO) gitops
+to push all the configs to given cluster.
+
+```
+oc apply -f motioneye-argocd-app.yaml
+```
 
 # Running MotionEye with podman
 
