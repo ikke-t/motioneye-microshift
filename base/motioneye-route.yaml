@@ -4,15 +4,15 @@ kind: Route
 metadata:
   labels:
     app: motion-eye
-  name: motion-config
+  name: motion-webcontrol
   namespace: motion
 spec:
-  host: motion-config.apps.raspishift.cool.lab
+  host: motion-webcontrol.apps.raspishift.cool.lab
   port:
     targetPort: 8080
   to:
     kind: Service
-    name: motion-conf
+    name: motion-webcontrol
     weight: 100
   wildcardPolicy: None
 

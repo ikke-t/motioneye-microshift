@@ -4,13 +4,13 @@ kind: Service
 metadata:
   labels:
     app: motion-eye
-  name: motion-conf
+  name: motion-webcontrol
   namespace: motion
 spec:
   ports:
-  - port: 8080
+  - port: 7999
     protocol: TCP
-    targetPort: 8080
+    targetPort: 7999
   selector:
     app: motion-eye
   sessionAffinity: None

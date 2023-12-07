@@ -34,7 +34,7 @@ spec:
           # image: docker.io/ccrisan/motioneye:master-amd64
           image: motioneye-image
           ports:
-            - containerPort: 8080
+            - containerPort: 7999
             - containerPort: 8081
             - containerPort: 8765
           securityContext:
