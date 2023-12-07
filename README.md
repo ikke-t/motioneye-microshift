@@ -34,6 +34,7 @@ Configuration is split into different files, and applied in this order:
 8. **[motioneye-service.yaml](./base/motioneye-service.yaml)** - Services to different TCP ports
 9. **[motioneye-route.yaml](./base/motioneye-route.yaml)** - Expose the routes to application
 10. **[motioneye-argocd-app](./argocd/motioneye-argocd-app.yaml)** - ArgoCD automation to use this repo
+11. **[motioneye-acm](./acm/motioneye-acm.yaml)** - Configure ACM to automatically push the app to ArgoCD
 
 # Demo setup
 
@@ -172,8 +173,20 @@ We want ArgoCD to make sure the given edge box runs MotionEye, so we use
 OpenShift GitOps from the nearby edge Single Node OpenShift (SNO) gitops
 to push all the configs to given cluster.
 
+Apply [motioneye-argocd-app](./argocd/motioneye-argocd-app.yaml)
 ```
 oc apply -f argocd/motioneye-argocd-app.yaml
+```
+
+## ACM - Advanced Cluster Manager automation
+
+To add the application to ACM, there is config file
+[motioneye-acm](./acm/motioneye-acm.yaml) which configures ACM to
+push the app to ArgoCD of any cluster that has label motion-eye-argocd.
+
+To apply this do:
+```
+oc apply -f acm/motioneye-acm.yaml
 ```
 
 # Running MotionEye with podman
